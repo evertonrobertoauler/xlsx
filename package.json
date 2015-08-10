@@ -1,0 +1,21 @@
+{
+  "name": "xlsx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app/dist/xlsx.js",
+  "devDependencies": {
+    "blob": "0.0.4",
+    "del": "^1.2.0",
+    "gulp": "^3.9.0",
+    "gulp-live-server": "0.0.23",
+    "gulp-replace": "^0.5.3",
+    "gulp-shell": "^0.4.2",
+    "jszip": "^2.5.0",
+    "open": "0.0.5",
+    "portfinder": "^0.4.0",
+    "q": "^1.4.1",
+    "webpack": "^1.10.5"
+  },
+  "author": "Éverton R. Auler <everton@atua.com.br>",
+  "license": "ISC"
+}

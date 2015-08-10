@@ -1,0 +1,51 @@
+<html>
+  <head>
+    <script type="text/javascript" src="dist/xlsx.min.js"></script>
+    <script>
+      var merge = [
+        {"s": {"c": 0, "r": 0}, "e": {"c": 2, "r": 0}},
+        {"s": {"c": 0, "r": 1}, "e": {"c": 5, "r": 2}}
+      ];
+
+      var dados = [
+        [
+          {
+            v: "This is a submerged cell",
+            s: {
+              border: {
+                left: {style: 'thick', color: {auto: 1}},
+                top: {style: 'thick', color: {auto: 1}},
+                bottom: {style: 'thick', color: {auto: 1}}
+              }
+            }
+          }
+        ],
+        [
+          {v: 'Default', s: {font: {bold: 1}, alignment: {horizontal: 'center', vertical: 'center'}}}
+        ],
+        [],
+        [
+          {"v": "Blank"},
+          {"v": "Red", "s": {fill: {fgColor: {rgb: "FFFF0000"}}}},
+          {"v": "Green", "s": {fill: {fgColor: {rgb: "FF00FF00"}}}},
+          {"v": "Blue", "s": {fill: {fgColor: {rgb: "FF0000FF"}}}}
+        ],
+        [
+          0.618033989,
+          {"v": 0.618033989},
+          {"v": 0.618033989, "t": "n"},
+          {"v": 0.618033989, "t": "n", "s": {"numFmt": "0.00%"}},
+          {"v": 0.618033989, "t": "n", "s": {"numFmt": "0.00%"}, fill: {fgColor: {rgb: "FFFFCC00"}}},
+          {"v": new Date(), "z": "dd/mm/yy hh:mm"}
+        ]
+      ];
+
+      function gerarArquivo() {
+        xlsx.saveAs(xlsx.gerar('Planilha', dados, merge), "teste.xlsx");
+      }
+    </script>
+  </head>
+  <body>
+    <button onclick="gerarArquivo()">Gerar XLSX</button>
+  </body>
+</html>
