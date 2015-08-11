@@ -44,6 +44,18 @@
 
       function gerarArquivo() {
         xlsx.saveAs(xlsx.createSheet('Sheet 1', dados, {mergeConfig: merge, widthConfig: width}), "example.xlsx");
+
+        var myWorker = new Worker("dist/xlsx.webworker.js");
+
+        myWorker.postMessage({
+          name: 'Sheet 1',
+          data: dados,
+          opt: {mergeConfig: merge, widthConfig: width}
+        });
+
+        myWorker.onmessage = function(e) {
+          xlsx.saveAs(e.data, "example-webworker.xlsx");
+        }
       }
     </script>
   </head>

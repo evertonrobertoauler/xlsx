@@ -20,18 +20,18 @@ var paths = {
 
 var shellTasks = {
   webpackProduction: 'NODE_ENV=production node node_modules/.bin/webpack --colors',
-  webpackDevelopment: 'NODE_ENV=development node node_modules/.bin/webpack --colors --watch'
+  webpackDevelopment: 'NODE_ENV=development node node_modules/.bin/webpack --colors'
 };
 
 gulp.task('serve', ['watch'], startLiveServer);
-gulp.task('build', gulpShell.task([shellTasks.webpackProduction]));
+gulp.task('build', gulpShell.task([shellTasks.webpackProduction, shellTasks.webpackDevelopment]));
 gulp.task('clean', clean([paths.dist]));
 
 gulp.task('watch', ['fixWebpack'], watch);
 gulp.task('fixWebpack', fixWebpack);
 
 function watch() {
-  var cmd = exec(shellTasks.webpackDevelopment);
+  var cmd = exec(shellTasks.webpackDevelopment + ' --watch');
   cmd.stdout.on('data', function(data) {
     console.log(data);
   });

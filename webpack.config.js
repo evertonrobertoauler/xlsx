@@ -15,13 +15,16 @@ if (defineObj.ON_PRODUCTION) {
 
 module.exports = {
   context: __dirname + '/app/src',
-  entry: './index.js',
+  entry: {
+    'xlsx': './index.js',
+    'xlsx.webworker': './webworker.js'
+  },
   resolve: {
     extensions: ['', '.js']
   },
   output: {
     path: __dirname + '/app/dist',
-    filename: defineObj.ON_PRODUCTION ? 'xlsx.min.js' : 'xlsx.js',
+    filename: defineObj.ON_PRODUCTION ? '[name].min.js' : '[name].js',
     library: 'xlsx',
     libraryTarget: 'umd'
   },
