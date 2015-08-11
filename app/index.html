@@ -1,11 +1,13 @@
 <html>
   <head>
-    <script type="text/javascript" src="dist/xlsx.min.js"></script>
+    <script type="text/javascript" src="dist/xlsx.js"></script>
     <script>
       var merge = [
         {"s": {"c": 0, "r": 0}, "e": {"c": 2, "r": 0}},
         {"s": {"c": 0, "r": 1}, "e": {"c": 5, "r": 2}}
       ];
+
+      var width = [50, 100, 75, 60, 100, 150];
 
       var dados = [
         [
@@ -36,12 +38,12 @@
           {"v": 0.618033989, "t": "n"},
           {"v": 0.618033989, "t": "n", "s": {"numFmt": "0.00%"}},
           {"v": 0.618033989, "t": "n", "s": {"numFmt": "0.00%"}, fill: {fgColor: {rgb: "FFFFCC00"}}},
-          {"v": new Date(), "z": "dd/mm/yy hh:mm"}
+          {"v": new Date(), "z": "dd/mm/yy hh:mm", s: {alignment: {horizontal: 'center'}}}
         ]
       ];
 
       function gerarArquivo() {
-        xlsx.saveAs(xlsx.gerar('Planilha', dados, merge), "teste.xlsx");
+        xlsx.saveAs(xlsx.createSheet('Sheet 1', dados, {mergeConfig: merge, widthConfig: width}), "example.xlsx");
       }
     </script>
   </head>

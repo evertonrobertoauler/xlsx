@@ -10,12 +10,18 @@ function streamToBuffer(s) {
   return buf;
 }
 
-function gerar(planilha, linhas, merge) {
+function createSheet(name, data, opt) {
+  var workbook = Workbook().addRowsToSheet(name, data);
 
-  var workbook = Workbook().addRowsToSheet(planilha, linhas).finalize();
+  var merge = opt && opt.mergeConfig || [];
+  var width = opt && opt.widthConfig || [];
 
-  (merge || []).map(function(merge) {
-    workbook.mergeCells(planilha, merge);
+  merge.map(function(merge) {
+    workbook.mergeCells(name, merge);
+  });
+
+  width.map(function(value, key) {
+    workbook.setColWidthPixels(name, key, value);
   });
 
   workbook.finalize();
@@ -24,5 +30,5 @@ function gerar(planilha, linhas, merge) {
   return (new Blob([streamToBuffer(stream)], {type: "application/octet-stream"}));
 }
 
-var xlsx = {gerar: gerar, saveAs: saveAs};
+var xlsx = {createSheet: createSheet, saveAs: saveAs};
 module.exports = xlsx;
