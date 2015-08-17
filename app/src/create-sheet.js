@@ -1,13 +1,6 @@
 var XLSX = require('./lib/xlsx');
 var Workbook = require('./lib/workbook');
-var Blob = require('blob');
-
-function streamToBuffer(s) {
-  var buf = new ArrayBuffer(s.length);
-  var view = new Uint8Array(buf);
-  for (var i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xFF;
-  return buf;
-}
+var streamToBuffer = require('./stream-to-buffer');
 
 function createSheet(name, data, opt) {
   var workbook = Workbook().addRowsToSheet(name, data);
