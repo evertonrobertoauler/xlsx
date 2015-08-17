@@ -56,8 +56,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var createSheet = __webpack_require__(1);
 	var saveAs = __webpack_require__(67);
+	var streamToBuffer = __webpack_require__(66);
 	
-	var xlsx = {createSheet: createSheet, saveAs: saveAs};
+	var xlsx = {createSheet: createSheet, saveAs: saveAs, streamToBuffer: streamToBuffer};
 	module.exports = xlsx;
 
 
